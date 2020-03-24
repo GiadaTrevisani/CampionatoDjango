@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<table class="table table-striped">
+		<thead class="thead-light">
+			<tr>
+				<th>Punti</th>
+				<th>Squadra</th>
+				<th>Giocate</th>
+				<th>Vinte</th>
+				<th>Perse</th>
+				<th>Pareggiate</th>
+				<th>Goal Fatti</th>
+				<th>Goal Subiti</th>
+			</tr>
+		</thead>
+		{% if Statistiche %}
+		<tbody>
+			{% for dato in Statistiche %}
+				<tr align="center">
+					<td>{{ dato.punti }}</td>
+					<td>{{ dato.squadra }}</td>
+					<td>{{ dato.partite }}</td>
+					<td>{{ dato.vinte }}</td>
+					<td>{{ dato.perse }}</td>
+					<td>{{ dato.pareggiate }}</td>
+					<td>{{ dato.golfatti }}</td>
+					<td>{{ dato.golsubiti }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		{% else %}
+	    <p>Statistiche non è caricabile.</p>
+	    {% endif %}
+    </table>
+{% endblock %}

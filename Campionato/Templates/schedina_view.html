@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<table class="table table-striped">
+		<thead class="thead-light">
+			<tr align="center", bgcolor="pink">
+				<th>Giornata</th>
+				<th>Squadra Casa</th>
+				<th>Squadra Ospite</th>
+					<th>1/x/2</th>
+			</tr>
+		</thead>
+		{% if Schedina %}
+		<tbody>
+			{% for dato in Schedina %}
+				<tr align="center">
+					<td>{{ dato.giornata }}</td>
+					<td>{{ dato.locali}}</td>
+					<td>{{ dato.ospiti }}</td>
+					<td>{{ dato.risultato}}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		{% else %}
+	    <p>Schedina non è caricabile.</p>
+	    {% endif %}
+    </table>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<table class="table table-striped">
+		<thead class="thead-light">
+			<tr align="center">
+				<th>Posto</th>
+				<th>Squadra</th>
+				<th>Punti</th>
+			</tr>
+		</thead>
+		{% if Classifica %}
+		<tbody>
+			{% for dato in Classifica %}
+				<tr align="center">
+					<td>{{ dato.id }}</td>
+					<td>{{ dato.squadra}}</td>
+					<td>{{ dato.punti }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		{% else %}
+	    <p>Classifica non è caricabile.</p>
+	    {% endif %}
+    </table>
+{% endblock %}

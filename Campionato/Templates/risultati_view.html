@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if Risultati %}
+		<table class="table table-striped">
+				{% for lista_giornata in Risultati %}
+					<tr align="center">
+						<td class="table-danger" colspan="4"> Giornata {{ lista_giornata.0.giornata }} </td>
+					</tr>
+					{% for dato in lista_giornata %}
+					<tr align="center">
+						<td>{{ dato.locali }}</td>
+						<td>{{ dato.retilocali }}</td>
+						<td>{{ dato.retiospiti }}</td>
+						<td>{{ dato.ospiti }}</td>
+					</tr>
+					{% endfor %}
+				{% endfor %}
+		</table>
+	{% else %}
+    <p>Risultati non è caricabile.</p>
+    {% endif %}
+{% endblock %}
