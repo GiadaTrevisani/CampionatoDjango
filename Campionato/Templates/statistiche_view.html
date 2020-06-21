@@ -2,7 +2,7 @@
 
 {% block content %}
 	<table class="table table-striped">
-		<thead class="thead-light">
+		<thead align="center" style="background-color: #f4c6cb">
 			<tr>
 				<th>Punti</th>
 				<th>Squadra</th>
@@ -17,20 +17,20 @@
 		{% if Statistiche %}
 		<tbody>
 			{% for dato in Statistiche %}
-				<tr align="center">
+				<tr align="center" style="color: aliceblue">
 					<td>{{ dato.punti }}</td>
-					<td>{{ dato.squadra }}</td>
-					<td>{{ dato.partite }}</td>
+					<td>{{ dato.nome }}</td>
+					<td>{{ dato.giocate }}</td>
 					<td>{{ dato.vinte }}</td>
 					<td>{{ dato.perse }}</td>
 					<td>{{ dato.pareggiate }}</td>
-					<td>{{ dato.golfatti }}</td>
-					<td>{{ dato.golsubiti }}</td>
+					<td>{{ dato.goal_fatti }}</td>
+					<td>{{ dato.goal_subiti }}</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 		{% else %}
-	    <p>Statistiche non è caricabile.</p>
-	    {% endif %}
-    </table>
+		<p>Statistiche non è caricabile.</p>
+		{% endif %}
+	</table>
 {% endblock %}

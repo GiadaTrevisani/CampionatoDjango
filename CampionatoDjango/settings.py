@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's8t-i#p-uk*o#h#zg^k!dl&y=ao2=_fti^sh7k+i_68zf(3ihn'
+SECRET_KEY = '19h-0dz*s3o+u%uq$z!^fo^m^h($xky_j8h*z@^_dr4k-@8=*o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #my own app
+    # my own app
     'Campionato.apps.CampionatoConfig',
 ]
 
@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'CampionatoDjango.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'DBCampionato.db'),
+        'NAME': os.path.join(BASE_DIR, 'campionato.db'),
     }
 }
 
@@ -120,3 +120,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'Campionato/static'),
+]

@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
-<div class="jumbotron">
-	<h1>Benvenuto nel sito web di consultazione dati del Campionato.</h1>
-	<br>
-	<h4>Cosa si desidera visualizzare?</h4>
-	<ul>
-		<li><a href="Campionato/Calendario/">Calendario</a></li>
-		<li><a href="Campionato/Risultati/">Risultati</a></li>
-		<li><a href="Campionato/Schedina/">Schedina</a></li>
-		<li><a href="Campionato/Classifica/">Classifica</a></li>
-		<li><a href="Campionato/Statistiche/">Statistica</a></li>
-	</ul>
-</div>
+    <div class="jumbotron bg-dark">
+        <h1 style="color: aliceblue">Benvenuto nel sito web di consultazione dati del Campionato.</h1>
+        <br>
+        <h4 style="color: aliceblue">Statistiche Campionato:</h4>
+        <ul style="color: aliceblue">
+            <li>Numero partite: {{ num_partite }}</li>
+            <li>Numero camapionati: {{ num_campionati }}</li>
+            <li>Numero giornate: {{ num_giornate }}</li>
+            <li>Numero squadre: {{ num_squadre }}</li>
+            <li>Numero goal totali: {{ num_goal }}</li>
+        </ul>
+    </div>
 {% endblock %}

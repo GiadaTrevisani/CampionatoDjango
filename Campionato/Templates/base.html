@@ -1,50 +1,95 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="it">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<title>{{ title }}</title>
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">	
+    <link rel="stylesheet" href="{% static 'css/topbutton.css' %}">
+    <link rel="stylesheet" href="{% static 'css/intratable.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+	<link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <title>{{ title }}</title>
 </head>
-<body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<body class="bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	  <a class="navbar-brand" href="#">Campionato</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
 	  <div class="collapse navbar-collapse" id="navbarNav">
-	    <ul class="navbar-nav">
-	      <li class="nav-item">
-	        <a class="nav-link {{ home_active }}" href="/">Home</a>
-	      </li>
-	      <li class="nav-item {{ calendario_active }}">
-	        <a class="nav-link" href="/Campionato/Calendario/">Calendario</a>
-	      </li>
-	      <li class="nav-item {{ risultati_active }}">
-	        <a class="nav-link" href="/Campionato/Risultati/">Risultati</a>
-	      </li>
-	      <li class="nav-item {{ schedina_active }}">
-	        <a class="nav-link" href="/Campionato/Schedina/">Schedina</a>
-	      </li>
-	      <li class="nav-item {{ classifica_active }}">
-	        <a class="nav-link" href="/Campionato/Classifica/">Classifica</a>
-	      </li>
-	      <li class="nav-item {{ statistiche_active }}">
-	        <a class="nav-link" href="/Campionato/Statistiche/">Statistiche</a>
-	      </li>
-	    </ul>
-	  </div>
-	</nav>
-
-	<div class="container-fluid">
-		
-	{% block content %}
-	{% endblock %}
-
+	    <ul class="navbar-nav mr-auto">
+	    	<li class="nav-item">
+	    		{% if anno == '2016' %}
+	    			<a class="nav-link {{ home_active }}" href="/?dropanni=2016">Home</a>
+	    		{% else %}
+	    			<a class="nav-link {{ home_active }}" href="/">Home</a>
+	    		{% endif %}
+			</li>
+			<li class="nav-item {{ calendario_active }}">
+				{% if anno == '2016' %}
+					<a class="nav-link" href="/Campionato/Calendario?dropanni=2016">Calendario</a>
+				{% else %}
+					<a class="nav-link" href="/Campionato/Calendario/">Calendario</a>
+				{% endif %}
+			</li>
+			<li class="nav-item {{ risultati_active }}">
+				{% if anno == '2016' %}
+					<a class="nav-link" href="/Campionato/Risultati?dropanni=2016">Risultati</a>
+				{% else %}
+					<a class="nav-link" href="/Campionato/Risultati/">Risultati</a>
+				{% endif %}
+			</li>
+			<li class="nav-item {{ schedina_active }}">
+				{% if anno == '2016' %}
+					<a class="nav-link" href="/Campionato/Schedina?dropanni=2016">Schedina</a>
+				{% else %}
+					<a class="nav-link" href="/Campionato/Schedina/">Schedina</a>
+				{% endif %}
+			</li>
+			<li class="nav-item {{ classifica_active }}">
+				{% if anno == '2016' %}
+					<a class="nav-link" href="/Campionato/Classifica?dropanni=2016">Classifica</a>
+				{% else %}
+					<a class="nav-link" href="/Campionato/Classifica/">Classifica</a>
+				{% endif %}
+			</li>
+			<li class="nav-item {{ statistiche_active }}">
+				{% if anno == '2016' %}
+					<a class="nav-link" href="/Campionato/Statistiche?dropanni=2016">Statistiche</a>
+				{% else %}
+					<a class="nav-link" href="/Campionato/Statistiche/">Statistiche</a>
+				{% endif %}
+			</li>
+		</ul>
+			<form class="form-inline mt-2 mt-md-0 mr-md-4">
+				<label for="dropanni" style="color: white; margin-right: 10px">Seleziona anno:</label>
+				<select class="my-2 my-sm-0" name="dropanni" id="dropanni">
+					{% if anno == '2016' %}
+						<option value="2015">2015</option>
+						<option value="2016" selected="selected">2016</option>
+					{% else %}
+						<option value="2015" selected="selected">2015</option>
+						<option value="2016">2016</option>
+					{% endif %}
+				</select>
+			</form>
 	</div>
+	</nav>
+	<div class="container-fluid">
+		{% block content %}
+		{% endblock %}
 
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		{% csrf_token %}
+	
+    	<a id="topbutton"></a>
+	</div>
+	<script src="{%  static 'js/jquery-3.4.1.min.js'%}"></script>
+	<script src="{%  static 'js/popper.min.js'%}"></script>
+	<script src="{%  static 'js/bootstrap.min.js'%}"></script>
+    <script src="{%  static 'js/topbutton.js'%}"></script>
+    <script src="{%  static 'js/scrolltoid.js'%}"></script>
+    <script src="{%  static 'js/dropanni.js'%}"></script>
 </body>
 </html>

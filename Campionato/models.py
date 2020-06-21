@@ -8,85 +8,44 @@
 from django.db import models
 
 
-class Calendario(models.Model):
-    #id = models.AutoField()
-    campionato = models.IntegerField(blank=True, null=True)
-    giornata = models.IntegerField(blank=True, null=True)
-    ar = models.CharField(db_column='AR', blank=True, null=True, max_length = 150)  # Field name made lowercase.
-    data = models.IntegerField(blank=True, null=True)
-    locali = models.TextField(blank=True, null=True)
-    ospiti = models.TextField(blank=True, null=True)
-    retilocali = models.IntegerField(db_column='retiLocali', blank=True, null=True)  # Field name made lowercase.
-    retiospiti = models.IntegerField(db_column='retiOspiti', blank=True, null=True)  # Field name made lowercase.
+class Campionato(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nome = models.TextField()
 
     class Meta:
         managed = False
-        db_table = 'Calendario'
+        db_table = 'Campionato'
 
 
-class Campionati(models.Model):
-    #id = models.AutoField()
-    nome = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'Campionati'
-
-
-class Classifica(models.Model):
-    #id = models.AutoField()
-    squadra = models.TextField(blank=True, null=True)
-    punti = models.IntegerField(blank=True, null=True)
+class Giornata(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nome = models.TextField()
+    num_giornata = models.IntegerField()
+    campionato = models.ForeignKey(Campionato, models.DO_NOTHING, db_column="campionato")
 
     class Meta:
         managed = False
-        db_table = 'Classifica'
+        db_table = 'Giornata'
 
-
-class Risultati(models.Model):
-    #id = models.AutoField()
-    partita = models.IntegerField(blank=True, null=True)
-    giornata = models.IntegerField(blank=True, null=True)
-    retilocali = models.IntegerField(db_column='retiLocali', blank=True, null=True)  # Field name made lowercase.
-    retiospiti = models.IntegerField(db_column='retiOspiti', blank=True, null=True)  # Field name made lowercase.
+class Squadra(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nome = models.TextField()
+    codice = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'Risultati'
+        db_table = 'Squadra'
 
-
-class Schedina(models.Model):
-    #id = models.AutoField()
-    giornata = models.TextField(blank=True, null=True)
-    locali = models.TextField(blank=True, null=True)
-    ospiti = models.TextField(blank=True, null=True)
-    risultato = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'Schedina'
-
-
-class Squadre(models.Model):
-    #id = models.AutoField()
-    nome = models.TextField(blank=True, null=True)
+class Partita(models.Model):
+    id = models.IntegerField(primary_key=True)
+    data = models.TextField()
+    giornata = models.ForeignKey(Giornata, models.DO_NOTHING, db_column="giornata")
+    squadra_casa = models.ForeignKey(Squadra, models.DO_NOTHING, related_name="squadra_casa", db_column="squadra_casa")
+    squadra_ospite = models.ForeignKey(Squadra, models.DO_NOTHING, related_name="squadra_ospite", db_column="squadra_ospite")
+    risultato_casa = models.IntegerField(blank=True, null=True)
+    risultato_ospite = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'Squadre'
+        db_table = 'Partita'
 
-
-class Statistiche(models.Model):
-    #id = models.AutoField()
-    squadra = models.TextField(blank=True, null=True)
-    partite = models.IntegerField(blank=True, null=True)
-    vinte = models.IntegerField(blank=True, null=True)
-    perse = models.IntegerField(blank=True, null=True)
-    pareggiate = models.IntegerField(blank=True, null=True)
-    punti = models.IntegerField(blank=True, null=True)
-    golfatti = models.IntegerField(db_column='golFatti', blank=True, null=True)  # Field name made lowercase.
-    golsubiti = models.IntegerField(db_column='golSubiti', blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'Statistiche'

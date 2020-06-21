@@ -2,30 +2,18 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Calendario
+from .models import Campionato
 
-admin.site.register(Calendario)
+admin.site.register(Campionato)
 
-from .models import Campionati
+from .models import Giornata
 
-admin.site.register(Campionati)
+admin.site.register(Giornata)
 
-from .models import Classifica
+from .models import Squadra
 
-admin.site.register(Classifica)
+admin.site.register(Squadra)
 
-from .models import Risultati
+from .models import Partita
 
-admin.site.register(Risultati)
-
-from .models import Schedina
-
-admin.site.register(Schedina)
-
-from .models import Squadre
-
-admin.site.register(Squadre)
-
-from .models import Statistiche
-
-admin.site.register(Statistiche)
+admin.site.register(Partita)

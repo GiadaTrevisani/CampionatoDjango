@@ -20,7 +20,5 @@ from Campionato.views import home_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view),
-	path('Campionato/', include('Campionato.urls')),
+    path('Campionato/', include('Campionato.urls')),
 ]
-
-

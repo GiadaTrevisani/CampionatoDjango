@@ -2,7 +2,7 @@
 
 {% block content %}
 	<table class="table table-striped">
-		<thead class="thead-light">
+		<thead style="background-color: #f4c6cb">
 			<tr align="center">
 				<th>Giornata</th>
 				<th>A/R</th>
@@ -11,16 +11,24 @@
 				<th>Squadra Ospite</th>
 			</tr>
 		</thead>
-		{% if Calendario %}
+		{% if Partite %}
 		<tbody>
-			{% for dato in Calendario %}
-				<tr align="center">
-					<td>{{ dato.giornata }}</td>
-					<td>{{ dato.ar }}</td>
-					<td>{{ dato.data }}</td>
-					<td>{{ dato.locali }}</td>
-					<td>{{ dato.ospiti }}</td>
-				</tr>
+			{% for dato in Partite %}
+                {% if dato.id == id %}
+				    <tr id="evidenziaelemento" align="center" style="background-color: #ffebee">
+                {% else %}
+                    <tr align="center" style="color: aliceblue">
+                {% endif %}
+                    <td>{{ dato.giornata.num_giornata }}</td>
+                    {% if dato.giornata.num_giornata <= ritorno %}
+                    	<td>A</td>
+                    {% else %}
+                    	<td>R</td>
+                    {% endif %}
+                    <td>{{ dato.data }}</td>
+                    <td>{{ dato.squadra_casa.nome }}</td>
+                    <td>{{ dato.squadra_ospite.nome }}</td>
+                </tr>
 			{% endfor %}
 		</tbody>
 		{% else %}

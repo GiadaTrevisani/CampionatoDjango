@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 	<table class="table table-striped">
-		<thead class="thead-light">
+		<thead style="background-color: #f4c6cb">
 			<tr align="center">
 				<th>Posto</th>
 				<th>Squadra</th>
@@ -12,15 +14,15 @@
 		{% if Classifica %}
 		<tbody>
 			{% for dato in Classifica %}
-				<tr align="center">
-					<td>{{ dato.id }}</td>
-					<td>{{ dato.squadra}}</td>
-					<td>{{ dato.punti }}</td>
+				<tr align="center" style="color: aliceblue">
+					<td>{{ dato.0 }}</td>
+					<td>{{ dato.1 }}</td>
+					<td>{{ dato.2 }}</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 		{% else %}
-	    <p>Classifica non è caricabile.</p>
-	    {% endif %}
-    </table>
+		<p>Classifica non è caricabile.</p>
+		{% endif %}
+	</table>
 {% endblock %}

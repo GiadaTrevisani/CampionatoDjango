@@ -1,28 +1,34 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<table class="table table-striped">
-		<thead class="thead-light">
-			<tr align="center", bgcolor="pink">
-				<th>Giornata</th>
-				<th>Squadra Casa</th>
-				<th>Squadra Ospite</th>
-					<th>1/x/2</th>
-			</tr>
-		</thead>
-		{% if Schedina %}
-		<tbody>
-			{% for dato in Schedina %}
-				<tr align="center">
-					<td>{{ dato.giornata }}</td>
-					<td>{{ dato.locali}}</td>
-					<td>{{ dato.ospiti }}</td>
-					<td>{{ dato.risultato}}</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-		{% else %}
-	    <p>Schedina non è caricabile.</p>
-	    {% endif %}
+    <table class="table table-striped">
+        <thead style="background-color: #f4c6cb">
+            <tr align="center">
+                <th>Giornata</th>
+                <th>Squadra Casa</th>
+                <th>Squadra Ospite</th>
+                    <th>1/x/2</th>
+            </tr>
+        </thead>
+        {% if Schedina %}
+        <tbody>
+            {% for dato in Schedina %}
+                <tr class="rowtable" align="center" style="color: #ffffff" onclick="goto_risultati({{ dato.id }}, {{ anno }})">
+                    <td>{{ dato.giornata }}</td>
+                    <td>{{ dato.casa}}</td>
+                    <td>{{ dato.ospite }}</td>
+                    <td>{{ dato.risultato}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        {% else %}
+        <p>Schedina non è caricabile.</p>
+        {% endif %}
     </table>
+    <script>
+        function goto_risultati(id, anno){
+            const hostname = window.location.origin;
+            window.location.href=hostname + "/Campionato/Risultati?id=" + id + "&dropanni=" + anno;
+        }
+    </script>
 {% endblock %}
